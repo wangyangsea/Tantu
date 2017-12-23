@@ -24,7 +24,17 @@
           }
       },
       created(){
-        this.allTopic=sessionStorage.getItem('project_num_1');
+          if(this.$route.path.indexOf('/project1-testing')!==-1){
+            this.allTopic=sessionStorage.getItem('project_num_1');
+          }else if(this.$route.path.indexOf('/project2-testing')!==-1){
+            this.allTopic=sessionStorage.getItem('project_num_2');
+          }else if(this.$route.path.indexOf('/project3-testing')!==-1){
+            this.allTopic=sessionStorage.getItem('project_num_3');
+          }else if(this.$route.path.indexOf('/project4-testing')!==-1){
+            this.allTopic=sessionStorage.getItem('project_num_4');
+          }else if(this.$route.path.indexOf('/project5-testing')!==-1){
+            this.allTopic=sessionStorage.getItem('project_num_5');
+          }
       },
       watch:{
 
@@ -77,5 +87,19 @@
     background: url('../../assets/images/module/clock.png') no-repeat;
     background-size: 28px 28px;
     background-position: left center;
+  }
+
+  .topic-option:before{
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background: url('/src/assets/images/module/uncheck.png') no-repeat;
+    background-size: contain;
+    margin: -3px 0 0 -3px;
+  }
+  .topic-option:checked:before{
+    background: url('/src/assets/images/module/checked.png') no-repeat;
+    background-size: contain;
   }
 </style>

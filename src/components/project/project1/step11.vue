@@ -34,7 +34,7 @@
         option1:option1,
         check:'',
         arr:new Array(5),
-        answerNum:1,
+        answerNum:null,
         countDown:1200
       }
     },
@@ -56,8 +56,8 @@
     methods:{
       testSubmit(){
         if(arr_empty(this.arr)){
-          let _oldNum=sessionStorage.getItem('project_num_1');
-          sessionStorage.setItem('project_num_1',String(_oldNum-5))
+          let oldNum=sessionStorage.getItem('project_num_1');
+          sessionStorage.setItem('project_num_1',String(oldNum-5))
           this.$router.push('/project1-testing/test-12')
         }else{
           this.$layer.toast({content:'您还没有选完' ,time: 3000});

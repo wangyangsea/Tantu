@@ -155,17 +155,4 @@ a, input, button {
   margin-right: 12px;
   position: relative;
 }
-.topic-option:before{
-  content: '';
-  display: inline-block;
-  width: 20px;
-  height: 20px;
-  background: url('/src/assets/images/module/uncheck.png') no-repeat;
-  background-size: contain;
-  margin: -3px 0 0 -3px;
-}
-.topic-option:checked:before{
-  background: url('/src/assets/images/module/checked.png') no-repeat;
-  background-size: contain;
-}
 

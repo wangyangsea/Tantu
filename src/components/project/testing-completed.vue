@@ -4,9 +4,9 @@
     <div class="content">
       <div class="content-text">
         <img src="../../assets/images/module/done.png" alt="">
-        <h3 class="">太棒了，您已经完成HEXACO人格结构模型测试</h3>
-        <p class="">放松一下，玩个健脑小游戏，看看你能喂到多少鱼！</p>
-        <router-link to="/not-completed" tag="a" class="btn-default">开始</router-link>
+        <h3 class="">{{details.testTitle}}</h3>
+        <p class="">{{details.nextStep}}</p>
+        <router-link :to="url" tag="a" class="btn-default">开始</router-link>
       </div>
     </div>
   </div>
@@ -14,11 +14,39 @@
 
 <script>
   import MHeader from '../basics/home-header'
-    export default {
+  import {testName} from "../../datas/options";
+
+  export default {
         name: "testing-completed",
+      data(){
+          return{
+            details:{},
+            num:null,
+            url:''
+          }
+      },
       components:{
         MHeader
-      }
+      },
+      created(){
+          if(sessionStorage.hasOwnProperty('testName_num')){
+            this.num=Number(sessionStorage.getItem('testName_num'));
+            this.details=testName[this.num];
+            if(this.num==0){
+              this.url='/project2-testing/basbis'
+            }else if(this.num==1){
+              this.url='/project3-testing/dark-triad'
+            }else if(this.num==2){
+              this.url='/project4-testing/agency'
+            }else if(this.num==3){
+              this.url='/project5-testing/eq'
+            }else if(this.num==4){
+              this.url=''
+            }
+          }
+      },
+    methods:{
+    }
     }
 </script>
 

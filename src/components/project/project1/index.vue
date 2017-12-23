@@ -8,8 +8,7 @@
   export default {
     name: "project1",
     created(){
-      sessionStorage.setItem('project_num_1','60');
-      sessionStorage.setItem('_countdown','1200');
+
     }
   }
 </script>

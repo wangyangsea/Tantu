@@ -52,8 +52,8 @@
     methods:{
       testSubmit(){
         if(arr_empty(this.arr)){
-          let _oldNum=sessionStorage.getItem('project_num_1');
-          sessionStorage.setItem('project_num_1',String(_oldNum-5))
+          let oldNum=sessionStorage.getItem('project_num_3');
+          sessionStorage.setItem('project_num_3',String(oldNum-5))
           this.$router.push('/project3-testing/test-3')
         }else{
           this.$layer.toast({content:'您还没有选完' ,time: 3000});

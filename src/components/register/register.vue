@@ -115,7 +115,7 @@
         let that=this;
         this.$validator.validateAll(scope).then(result => {
           if (result) {
-            that.$router.push('/project1-testing/hexaco')
+            that.$router.push('/project1-recommend')
           }
         });
       },

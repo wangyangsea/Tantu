@@ -33,7 +33,7 @@
         topicDatas:[],
         option1:option1,
         check:'',
-        arr:new Array(2),
+        arr:new Array(5),
         answerNum: null,
         countDown:1200
       }
@@ -42,7 +42,7 @@
       TestingHeader
     },
     created(){
-      this.topicDatas=topicDatas.project3.slice(25,27);
+      this.topicDatas=topicDatas.project5.slice(5,10);
     },
     watch:{
       arr(oldArr,newArr){
@@ -52,9 +52,9 @@
     methods:{
       testSubmit(){
         if(arr_empty(this.arr)){
-          let oldNum=sessionStorage.getItem('project_num_3');
-          sessionStorage.setItem('project_num_3',String(oldNum-5))
-          this.$router.push('/testing-completed')
+          let oldNum=sessionStorage.getItem('project_num_5');
+          sessionStorage.setItem('project_num_5',String(oldNum-5))
+          this.$router.push('/project5-testing/test-3')
         }else{
           this.$layer.toast({content:'您还没有选完' ,time: 3000});
         }

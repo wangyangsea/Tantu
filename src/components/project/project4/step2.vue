@@ -4,7 +4,7 @@
     <div class="content">
       <div class="content-title">
         <h3 class="">请在以下每一个描述后的5个选项中，选择最符合你的看法的一项。</h3>
-        <p>1 = “非常不同意” 2 = “不同意” 3 = “没有看法” 4= “同意” 5 = “非常同意”</p>
+        <p>1 = “不重要” 2 = “不是很重要” 3 = “有些重要” 4= “比较重要” 5 = “非常重要”</p>
       </div>
       <div class="topic-box">
         <div class="" v-for="(item,index) in topicDatas" :key="item.id">
@@ -25,15 +25,15 @@
 <script>
   import TestingHeader from '../../basics/testing-header'
   import topicDatas from '../../../datas/topic'
-  import {option1} from '../../../datas/options'
+  import {option3} from '../../../datas/options'
   export default {
     name: "step1",
     data(){
       return{
         topicDatas:[],
-        option1:option1,
+        option1:option3,
         check:'',
-        arr:new Array(2),
+        arr:new Array(5),
         answerNum: null,
         countDown:1200
       }
@@ -42,7 +42,7 @@
       TestingHeader
     },
     created(){
-      this.topicDatas=topicDatas.project3.slice(25,27);
+      this.topicDatas=topicDatas.project4.slice(5,10);
     },
     watch:{
       arr(oldArr,newArr){
@@ -52,9 +52,9 @@
     methods:{
       testSubmit(){
         if(arr_empty(this.arr)){
-          let oldNum=sessionStorage.getItem('project_num_3');
-          sessionStorage.setItem('project_num_3',String(oldNum-5))
-          this.$router.push('/testing-completed')
+          let oldNum=sessionStorage.getItem('project_num_4');
+          sessionStorage.setItem('project_num_4',String(oldNum-5))
+          this.$router.push('/project4-testing/test-3')
         }else{
           this.$layer.toast({content:'您还没有选完' ,time: 3000});
         }

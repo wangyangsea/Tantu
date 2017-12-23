@@ -31,10 +31,20 @@ import Project3Step3 from '../components/project/project3/step3'
 import Project3Step4 from '../components/project/project3/step4'
 import Project3Step5 from '../components/project/project3/step5'
 import Project3Step6 from '../components/project/project3/step6'
+import Agency from '../components/project/project4/agency'
+import Project4Step1 from '../components/project/project4/step1'
+import Project4Step2 from '../components/project/project4/step2'
+import Project4Step3 from '../components/project/project4/step3'
+import EQ from '../components/project/project5/eq'
+import Project5Step1 from '../components/project/project5/step1'
+import Project5Step2 from '../components/project/project5/step2'
+import Project5Step3 from '../components/project/project5/step3'
+import Project5Step4 from '../components/project/project5/step4'
+import Project5Step5 from '../components/project/project5/step5'
 
 Vue.use(Router)
 
-export default new Router({
+const router=new Router({
   mode:'history',
   routes: [
     {
@@ -51,7 +61,21 @@ export default new Router({
     },
     {
       path: '/testing-completed',
-      component: TestingCompleted
+      component: TestingCompleted,
+      beforeEnter:(to,from,next)=>{
+        if(from.path.indexOf('/project1-testing')!==-1){
+            sessionStorage.setItem('testName_num',0)
+        }else if(from.path.indexOf('/project2-testing')!==-1){
+          sessionStorage.setItem('testName_num',1)
+        }else if(from.path.indexOf('/project3-testing')!==-1){
+          sessionStorage.setItem('testName_num',2)
+        }else if(from.path.indexOf('/project4-testing')!==-1){
+          sessionStorage.setItem('testName_num',3)
+        }else if(from.path.indexOf('/project5-testing')!==-1){
+          sessionStorage.setItem('testName_num',4)
+        }
+        next()
+      }
     },
     {
       path: '/not-completed',
@@ -152,7 +176,7 @@ export default new Router({
       component:DarkTriad
     },
     {
-      path: '/project3-testing',
+      path: '/project4-testing',
       component: Project1Router,
       children:[
         {
@@ -181,6 +205,91 @@ export default new Router({
         }
 
       ]
+    },
+    {
+      path:'/project4-testing/agency',
+      component:Agency
+    },
+    {
+      path: '/project4-testing',
+      component: Project1Router,
+      children:[
+        {
+          path:'/project4-testing/test-1',
+          component:Project4Step1
+        },
+        {
+          path:'/project4-testing/test-2',
+          component:Project4Step2
+        },
+        {
+          path:'/project4-testing/test-3',
+          component:Project4Step3
+        }
+
+      ]
+    },
+    {
+      path:'/project5-testing/eq',
+      component:EQ
+    },
+    {
+      path: '/project5-testing',
+      component: Project1Router,
+      children:[
+        {
+          path:'/project5-testing/test-1',
+          component:Project5Step1
+        },
+        {
+          path:'/project5-testing/test-2',
+          component:Project5Step2
+        },
+        {
+          path:'/project5-testing/test-3',
+          component:Project5Step3
+        },
+        {
+          path:'/project5-testing/test-4',
+          component:Project5Step4
+        },
+        {
+          path:'/project5-testing/test-5',
+          component:Project5Step5
+        }
+      ]
     }
   ]
-})
+});
+
+router.beforeEach((to,from,next)=>{   // 进入页面路由前
+  window.scrollTo(0,0);    // 每次进入页面前强制页面回到顶部
+  next()
+});
+
+router.afterEach((to,from)=>{
+  if(to.path.indexOf('/project1-testing')!==-1){
+    if(!sessionStorage.hasOwnProperty('project_num_1')){
+      sessionStorage.setItem('project_num_1','60');
+    }
+  }else if(to.path.indexOf('/project2-testing')!==-1){
+    if(!sessionStorage.hasOwnProperty('project_num_2')){
+      sessionStorage.setItem('project_num_2','20');
+    }
+  }else if(to.path.indexOf('/project3-testing')!==-1){
+    if(!sessionStorage.hasOwnProperty('project_num_3')){
+      sessionStorage.setItem('project_num_3','27');
+    }
+  }else if(to.path.indexOf('/project4-testing')!==-1){
+    if(!sessionStorage.hasOwnProperty('project_num_4')){
+      sessionStorage.setItem('project_num_4','12');
+    }
+  }else if(to.path.indexOf('/project5-testing')!==-1){
+    if(!sessionStorage.hasOwnProperty('project_num_5')){
+      sessionStorage.setItem('project_num_5','25');
+    }
+  }
+
+});
+
+export default router

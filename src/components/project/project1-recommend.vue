@@ -8,7 +8,7 @@
       </div>
       <div class="content-text">
         <p class="">测试即将开始请做好准备</p>
-        <router-link to="/project1-testing/test-1" tag="a" class="btn-default">下一步</router-link>
+        <router-link to="/project1-testing/hexaco" tag="a" class="btn-default">下一步</router-link>
       </div>
     </div>
   </div>
