@@ -33,15 +33,15 @@
             this.num=Number(sessionStorage.getItem('testName_num'));
             this.details=testName[this.num];
             if(this.num==0){
-              this.url='/project2-testing/basbis'
+              this.url='/game/g1'
             }else if(this.num==1){
               this.url='/project3-testing/dark-triad'
             }else if(this.num==2){
-              this.url='/project4-testing/agency'
+              this.url='/game/g2'
             }else if(this.num==3){
               this.url='/project5-testing/eq'
             }else if(this.num==4){
-              this.url=''
+              this.url='/game/g3'
             }
           }
       },

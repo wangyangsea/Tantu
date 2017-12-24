@@ -18,12 +18,8 @@
           <div class="validator-component">
             <div class="form-row year-mouth-row">
               <label>出生年月</label>
-              <input type="text" @click="openByDrop($event)" v-model="calendar3.display" readonly placeholder="请选择日期" name="date" v-validate="'required'" ref="dates">
-              <transition name="fade">
-                <div class="calendar-dropdown" :style="{'left':calendar3.left+'px','top':calendar3.top+'px'}" v-if="calendar3.show">
-                  <calendar :zero="calendar3.zero" :lunar="calendar3.lunar" :value="calendar3.value" :begin="calendar3.begin" :end="calendar3.end" @select="calendar3.select"></calendar>
-                </div>
-              </transition>
+              <datepicker format="yyyy-MM-dd" v-model="pikerVal" placeholder="请选择出生年月"></datepicker>
+              <input type="hidden" name="date" v-validate="'required'" :value="dateHidden" ref="input">
             </div>
             <span v-show="errors.has('form-login-code.date')" class="help is-danger">{{ errors.first('form-login-code.date') }}</span>
           </div>
@@ -49,21 +45,6 @@
             </p>
             <span v-show="errors.has('form-login-code.email')" class="help is-danger">{{ errors.first('form-login-code.email') }}</span>
           </div>
-          <div class="validator-component">
-            <p class="form-row">
-              <label for="mobile">手机号</label>
-              <input id="mobile" type="text" name="mobile" v-validate="'required'">
-            </p>
-            <span v-show="errors.has('form-login-code.mobile')" class="help is-danger">{{ errors.first('form-login-code.mobile') }}</span>
-          </div>
-          <div class="validator-component">
-            <p class="form-row other-row">
-              <label for="phone_code">手机验证码</label>
-              <input id="phone_code" type="text" name="phone_code" v-validate="'required'">
-              <a href="javascript:;">获取验证码</a>
-            </p>
-            <span v-show="errors.has('form-login-code.phone_code')" class="help is-danger">{{ errors.first('form-login-code.phone_code') }}</span>
-          </div>
           <button class="btn-default">下一步</button>
         </form>
       </div>
@@ -74,41 +55,29 @@
 <script>
   import MHeader from '../basics/home-header'
   import Multiselect from 'vue-multiselect'
-  import calendar from '../basics/calendar.vue'
+  import Datepicker from 'vuejs-datepicker';
   export default {
     name: "home",
     data(){
       return{
-        calendar3:{
-          display:"",
-          show:false,
-          zero:true,
-          value:[], //默认日期
-          lunar:true, //显示农历
-          select:(value)=>{
-            this.calendar3.show=false;
-            this.dateVal=value;
-            this.calendar3.value=value;
-            this.calendar3.display=value.join("/");
-          }
-        },
+        pikerVal:'',
         options:['初中','高中','本科','硕士','博士','其他'],
         aaa:'',
-        dateVal:[]
-      }
-    },
-    watch:{
-      aaa(old,newa){
-      },
-      dateVal(old,newa){
-        this.$refs.dates.focus()
-        this.$refs.dates.blur()
+        dateVal:[],
+        dateHidden:''
       }
     },
     components:{
       MHeader,
-      calendar,
+      Datepicker,
       Multiselect
+    },
+    watch:{
+      pikerVal(news,olds){
+        this.dateHidden=GMTToStr(news);
+        this.$refs.input.focus()
+        this.$refs.input.blur()
+      }
     },
     methods:{
       validateForm(scope) {
@@ -118,21 +87,15 @@
             that.$router.push('/project1-recommend')
           }
         });
-      },
-      openByDrop(e){
-        this.calendar3.show=true;
-        this.calendar3.left=e.target.offsetLeft+19;
-        this.calendar3.top=e.target.offsetTop+70;
-
-        e.stopPropagation();
-        window.setTimeout(()=>{
-          document.addEventListener("click",(e)=>{
-            this.calendar3.show=false;
-            document.removeEventListener("click",()=>{},false);
-          },false);
-        },1000)
       }
     }
+  }
+  function GMTToStr(time){
+    let date = new Date(time)
+    let Str=date.getFullYear() + '-' +
+      (date.getMonth() + 1) + '-' +
+      date.getDate() + ' '
+    return Str
   }
 </script>
 
@@ -166,6 +129,7 @@
     line-height: 44px;
     border: 1px solid #e6e6e6;
     padding: 0 1rem;
+    font-size: 14px;
   }
   .other-row input{
     width: 220px;
@@ -201,6 +165,11 @@
     justify-content: space-between;
     align-items: center;
   }
+  .year-mouth-row label{
+    width: 100px;
+    text-align: right;
+    margin-right: 20px;
+  }
   .multiselect{
     width: auto;
     flex: 2;
@@ -230,5 +199,10 @@
     content: "";
     border:5px solid rgba(0, 0, 0, 0);
     border-bottom-color: #fff;
+  }
+  .vdp-datepicker{
+    width: 400px;
+    height: 44px;
+    border: 1px solid #ddd;
   }
 </style>

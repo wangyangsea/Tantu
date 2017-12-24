@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '../components/home'
+import Login from '../components/register/login'
 import Register from '../components/register/register'
 import Project1 from '../components/project/project1-recommend'
 import Project1Router from '../components/project/project1/index'
@@ -41,11 +42,29 @@ import Project5Step2 from '../components/project/project5/step2'
 import Project5Step3 from '../components/project/project5/step3'
 import Project5Step4 from '../components/project/project5/step4'
 import Project5Step5 from '../components/project/project5/step5'
+import EquipmentConfirm from '../components/sales/equipment-confirm'
+import SaleIndex from '../components/sales/sale-index'
+import SaleStep1 from '../components/sales/sale-step1'
+import SaleStep2 from '../components/sales/sale-step2'
+import SaleStep3 from '../components/sales/sale-step3'
+import InteractiveIndex from '../components/sales/interactive-index'
+import InformationForm from '../components/sales/information-form'
+import Analysis from '../components/sales/analysis'
+import Balance from '../components/sales/balance'
+import AllDone from '../components/sales/all-done'
+
+// 引入游戏组件
+import GameLayout from '@/components/games/game-layout'
+import game1 from '@/components/games/game1'
+import game2 from '@/components/games/game2'
+import game3 from '@/components/games/game3'
+import game3Results from '@/components/games/game3-results'
+// ----- end
 
 Vue.use(Router)
 
 const router=new Router({
-  mode:'history',
+  mode:'hash',
   routes: [
     {
       path:'/',
@@ -54,6 +73,10 @@ const router=new Router({
     {
       path: '/home',
       component: Home
+    },
+    {
+      path: '/login',
+      component: Login
     },
     {
       path: '/register',
@@ -176,7 +199,7 @@ const router=new Router({
       component:DarkTriad
     },
     {
-      path: '/project4-testing',
+      path: '/project3-testing',
       component: Project1Router,
       children:[
         {
@@ -258,6 +281,73 @@ const router=new Router({
           component:Project5Step5
         }
       ]
+    },
+    {
+      path: '/game',
+      name: 'GameLayout',
+      component: GameLayout,
+      children: [
+        {
+          path: '/game/g1',
+          name: 'game1',
+          component: game1
+        },
+        {
+          path: '/game/g2',
+          name: 'game2',
+          component: game2
+        },
+        {
+          path: '/game/g3',
+          name: 'game3',
+          component: game3
+        },
+        {
+          path: '/game/g3-results',
+          name: 'game3-results',
+          component: game3Results
+        }
+      ]
+    },
+    {
+      path: '/sale-confirm',
+      component: EquipmentConfirm
+    },
+    {
+      path: '/sale-index',
+      component: SaleIndex
+    },
+    {
+      path: '/sale-step1',
+      component: SaleStep1
+    },
+    {
+      path: '/sale-step2',
+      component: SaleStep2
+    },
+    {
+      path: '/sale-step3',
+      component: SaleStep3
+    },
+    {
+      path: '/interactive-index',
+      component: InteractiveIndex
+    },
+    {
+      path: '/information-from',
+      component: InformationForm
+    },
+    {
+      path: '/analysis',
+      component: Analysis
+    },
+    {
+      path: '/balance',
+      component: Balance
+    },
+    {
+      path: '/all-success',
+      component: AllDone
     }
   ]
 });

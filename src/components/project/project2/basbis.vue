@@ -32,7 +32,7 @@
           </li>
           <li class="">
             <img src="../../../assets/images/hexaco/waixiang@2x.png" alt="">
-            <p>驱力</p>
+            <p>奖励反应</p>
           </li>
           <li class="">
             <img src="../../../assets/images/hexaco/yiren@2x.png" alt="">
@@ -63,6 +63,7 @@
   .model-box>img{
     width: 460px;
     height: 560px;
+    background: #000;
   }
   .model-text{
     width: 500px;

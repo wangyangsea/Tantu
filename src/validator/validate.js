@@ -44,6 +44,15 @@ const dictionary = {
       },
       phone_code: {
         required: '手机验证码不能为空'
+      },
+      position: {
+        required: '当前销售职位不能为空'
+      },
+      experience: {
+        required: '几年销售经验不能为空'
+      },
+      new_position: {
+        required: '期望新的销售职位s不能为空'
       }
 
     }
